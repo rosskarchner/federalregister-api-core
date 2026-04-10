@@ -90,9 +90,17 @@ class EntrySerializer < ApplicationSerializer
   end
 
   attribute :full_text do |entry|
-    path = "#{FileSystemPathManager.data_file_path}/documents/full_text/raw/#{entry.document_file_path}.txt"
-    if File.file?(path)
-      contents = File.read(path)
+    doc_file_path = if entry.document_file_path.present?
+      entry.document_file_path
+    elsif entry.document_number.present? && entry.publication_date.present?
+      # ES search results don't store document_file_path; reconstruct it
+      pub_date = entry.publication_date.is_a?(String) ? Date.parse(entry.publication_date) : entry.publication_date
+      "#{pub_date.strftime('%Y/%m/%d')}/#{entry.document_number}"
+    end
+
+    if doc_file_path
+      path = "#{FileSystemPathManager.data_file_path}/documents/full_text/raw/#{doc_file_path}.txt"
+      File.read(path) if File.file?(path)
     end
   end
 

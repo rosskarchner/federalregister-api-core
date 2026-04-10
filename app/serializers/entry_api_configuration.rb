@@ -76,11 +76,11 @@ module EntryApiConfiguration
   end
 
   def default_show_fields_json
-    api_fields - [:excerpts, :agency_names, :docket_id, :president]
+    api_fields - [:excerpts, :agency_names, :docket_id, :president, :full_text]
   end
 
   def default_show_fields_csv
-    api_fields - [:excerpts, :agency_names, :docket_id, :president]
+    api_fields - [:excerpts, :agency_names, :docket_id, :president, :full_text]
   end
 
 end
