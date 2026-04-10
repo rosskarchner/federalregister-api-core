@@ -25,6 +25,7 @@ module EntryApiConfiguration
       :executive_order_notes,
       :executive_order_number,
       :explanation,
+      :full_text,
       :full_text_xml_url,
       :html_url,
       :images,
@@ -75,11 +76,11 @@ module EntryApiConfiguration
   end
 
   def default_show_fields_json
-    api_fields - [:excerpts, :agency_names, :docket_id, :president]
+    api_fields - [:excerpts, :agency_names, :docket_id, :president, :full_text]
   end
 
   def default_show_fields_csv
-    api_fields - [:excerpts, :agency_names, :docket_id, :president]
+    api_fields - [:excerpts, :agency_names, :docket_id, :president, :full_text]
   end
 
 end
