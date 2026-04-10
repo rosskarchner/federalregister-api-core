@@ -25,6 +25,7 @@ module EntryApiConfiguration
       :executive_order_notes,
       :executive_order_number,
       :explanation,
+      :full_text,
       :full_text_xml_url,
       :html_url,
       :images,
